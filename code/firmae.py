@@ -7,8 +7,7 @@ import logging
 
 from analysis.PluginBase import AnalysisBasePlugin
 
-INTERNAL_DIRECTORY_PATH = os.path.join(get_dir_of_file(__file__), '../internal')
-FIRMADYNE_INSTALLATION_DIR = os.path.join(get_dir_of_file(__file__), '../bin/firmadyne')
+FIRMADYNE_INSTALLATION_DIR = os.path.join(get_dir_of_file(__file__), '../FirmAE')
 
 
 class AnalysisPlugin(AnalysisBasePlugin):
@@ -32,7 +31,7 @@ class AnalysisPlugin(AnalysisBasePlugin):
 
 def run_firmadyne(input_file):
 
-    command = '/usr/bin/python3 {}/firmadyne_wrapper.py {} &> {}/LOG.log'.format(INTERNAL_DIRECTORY_PATH, input_file, FIRMADYNE_INSTALLATION_DIR)
+    command = '{}/run.sh -c fact {} &> {}/LOG.log'.format(FIRMADYNE_INSTALLATION_DIR, input_file, FIRMADYNE_INSTALLATION_DIR)
     execute_shell_command(command)
     try:
         result_file = '{}/results.json'.format(FIRMADYNE_INSTALLATION_DIR)
